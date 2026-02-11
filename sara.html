@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine Edition 💌</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Great+Vibes&family=Cormorant+Garamond:wght@400&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+    margin:0;
+    background:#e8dcc7;
+    font-family:'Cormorant Garamond', serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+/* CONTENEDOR */
+.book{
+    width:420px;
+    height:720px;
+    background:#f6f1e7;
+    border-radius:10px;
+    box-shadow:0 20px 60px rgba(0,0,0,0.25);
+    position:relative;
+    overflow:hidden;
+    border:1px solid #d8cbb5;
+}
+
+/* PAGINAS */
+.page{
+    position:absolute;
+    width:100%;
+    height:100%;
+    padding:40px;
+    box-sizing:border-box;
+    opacity:0;
+    transform:translateX(100%);
+    transition:all 0.8s ease;
+}
+
+.page.active{
+    opacity:1;
+    transform:translateX(0);
+}
+
+.header{
+    text-align:center;
+    font-size:12px;
+    letter-spacing:4px;
+    color:#7a6a58;
+}
+
+.title{
+    text-align:center;
+    font-size:34px;
+    color:#5c3a2e;
+}
+
+.script{
+    font-family:'Great Vibes', cursive;
+    font-size:52px;
+    text-align:center;
+    color:#7b3f00;
+}
+
+.photo{
+    width:100%;
+    border-radius:6px;
+    margin:20px 0;
+    filter:sepia(40%) contrast(95%);
+}
+
+.photo1{
+    display: block;       /* Convierte la imagen en elemento de bloque */
+    margin: 0 auto;       /* Márgenes automáticos para centrar */
+    max-width: 300px;     /* Tamaño máximo opcional */    filter:sepia(40%) contrast(95%);
+}
+
+/* BOTONES */
+button{
+    padding:5px 30px;
+    border-radius:2;
+    border:1px solid #7b3f00;
+    background:transparent;
+    color:#7b3f00;
+    cursor:pointer;
+    font-family:'Cormorant Garamond', serif;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#7b3f00;
+    color:#f6f1e7;
+}
+
+.nav{
+    position:absolute;
+    bottom:30px;
+    left:0;
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    padding:0 50px;
+    box-sizing:border-box;
+}
+
+/* CORAZÓN CORREGIDO */
+.heart-wrapper{
+    position:relative;
+    width:180px;
+    height:160px;
+    margin:35px auto 20px auto;
+}
+
+.heart-wrapper{
+    position:relative;
+    width:200px;
+    height:180px;
+    margin:60px auto 30px auto;
+}
+
+.heart-final{
+    position:absolute;
+    width:140px;
+    height:140px;
+    background:#7b3f00;
+    transform:rotate(-45deg);
+    left:50%;
+    top:40px;
+    transform-origin:center;
+    translate:-50% 0;
+}
+
+.heart-final:before,
+.heart-final:after{
+    content:"";
+    position:absolute;
+    width:140px;
+    height:140px;
+    background:#7b3f00;
+    border-radius:50%;
+}
+
+.heart-final:before{
+    top:-70px;
+    left:0;
+}
+
+.heart-final:after{
+    left:70px;
+    top:0;
+}
+
+.heart-text{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    text-align:center;
+    color:#f6f1e7;
+    font-size:18px;
+    line-height:1.4;
+    font-family:'Playfair Display', serif;
+    width:140px;
+}
+
+
+/* Carta */
+.letter{
+    display:none;
+    margin-top:15px;
+    padding:15px;
+    border:1px solid #cbb79c;
+    background:#fbf7ef;
+    font-style:italic;
+}
+
+/* Secreto */
+.secret{
+    display:none;
+    margin-top:10px;
+    font-weight:bold;
+    color:#5c3a2e;
+}
+
+.countdown{
+    text-align:center;
+    margin-top:10px;
+    font-style:italic;
+    color:#7a6a58;
+}
+
+.divider{
+    width:60px;
+    height:1px;
+    background:#cbb79c;
+    margin:15px auto 25px auto;
+}
+
+.reasons{
+    list-style:none;
+    padding:0;
+    margin:0;
+    font-size:18px;
+    line-height:2;
+}
+
+.reasons li{
+    margin-bottom:8px;
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+}
+
+.reasons span{
+    font-family:'Playfair Display', serif;
+    font-size:16px;
+    color:#7b3f00;
+    border-bottom:1px solid #7b3f00;
+    padding-bottom:2px;
+    min-width:28px;
+}
+
+.note{
+    margin-top:20px;
+    text-align:center;
+    font-style:italic;
+    color:#7a6a58;
+    font-size:16px;
+}
+
+
+</style>
+</head>
+<body>
+
+<div class="book">
+
+<div class="page active" id="p1">
+    <div class="header">EDICIÓN ESPECIAL · FEBRERO</div>
+    <div class="title">Valentine Edition</div>
+    <div class="script">Sara & Fernando</div>
+    <img src="sarahi.jpeg" class="photo">
+    <p style="text-align:left;">
+        Me encanta tu compañia
+    </p>
+
+    <div class="nav">
+        <div></div>
+        <button onclick="next(2)">Siguiente</button>
+    </div>
+</div>
+
+<div class="page" id="p2">
+    <div class="header">CAPÍTULO I</div>
+    <div class="title">05 Razones</div>
+    <div class="script">por las que me gustas</div>
+
+    <div class="divider"></div>
+
+    <ul class="reasons">
+        <li><span>01</span> Desde el momento que te vi sonreir me cautivaste.</li>
+        <li><span>02</span> Contigo la vida se disfruta mucho mejor.</li>
+        <li><span>03</span> Mejoras incluso hasta el peor dia.</li>
+        <li><span>04</span> Eres mi ultimo pensamiento al dormir.</li>
+        <li><span>05</span> Amo cada lunar de tu cuerpo.</li>
+    </ul>
+
+    <p class="note">
+        Claramente hay mas de 5 razones....
+        pero si tuviera que elegir una, seria siemplemente porque eres tu.
+    </p>
+
+    <div class="nav">
+        <button onclick="next(1)">Atrás</button>
+        <button onclick="next(3)">Siguiente</button>
+    </div>
+</div>
+
+<div class="page" id="p3">
+    <div class="title">La gran pregunta</div>
+    <div class="script">¿Quieres ser mi San Valentín?</div>
+
+    <div style="text-align:center; margin-top:40px;">
+        <button onclick="next(4)">Sí</button>
+    </div>
+ <img src="xd.png" class="photo1">
+
+
+    <div class="nav">
+        <button onclick="next(2)">Atrás</button>
+    </div>
+</div>
+
+<div class="page" id="p4">
+    <div class="title">Confirmado oficialmente</div>
+
+    <div class="heart-wrapper">
+       <div class="heart-wrapper">
+    <div class="heart-final"></div>
+    <div class="heart-text">
+        Eres mi<br>San Valentín
+    </div>
+</div>
+
+    <div class="countdown" id="countdown"></div>
+
+    <div style="text-align:center;">
+        <button onclick="showLetter()">Abrir carta</button>
+    </div>
+
+    <div class="letter" id="letter">
+        Gracias por aceptar.
+        Espero que sigamos construyendo una historia juntos.
+    </div>
+
+    <div style="text-align:center; margin-top:10px;">
+        <button onclick="showSecret()">Mensaje oculto</button>
+    </div>
+
+    <div class="secret" id="secret">
+        Eres mi cielo ❤️
+    </div>
+
+    <div class="nav">
+        <button onclick="next(3)">Atrás</button>
+    </div>
+</div>
+
+</div>
+
+<script>
+
+function next(num){
+    document.querySelectorAll('.page').forEach(p=>{
+        p.classList.remove('active');
+    });
+    document.getElementById('p'+num).classList.add('active');
+}
+
+function showLetter(){
+    document.getElementById("letter").style.display="block";
+}
+
+function showSecret(){
+    document.getElementById("secret").style.display="block";
+}
+
+let startDate = new Date("2026-01-08");
+let now = new Date();
+let diff = now - startDate;
+let days = Math.floor(diff / (1000*60*60*24));
+document.getElementById("countdown").innerHTML =
+days + " días compartiendo historia y los que faltan.  ";
+
+</script>
+
+</body>
+</html>
+
